@@ -9,7 +9,7 @@ const server = express();
 
 function gateKeeper( req, res, next){
   const password = req.headers.password;
-  if (password && password.toLowerCase()){
+  if (password && password.toLowerCase()==="mellon"){
   next()
   }
   else{
@@ -30,8 +30,8 @@ server.get('/', (req, res) => {
     <p>Welcome${nameInsert} to the Lambda Hubs API</p>
     `);
 });
-server.get("/area51",[ helmet(), gateKeeper], (req,res)=>{
+server.get("/area51",[ helmet(), gateKeeper, (req,res)=>{
 
   res.send(req.headers)
-})
+}])
 module.exports = server;
